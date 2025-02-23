@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Features | Code Crafter</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #000000, #1a1a1a, #03f3cb); /* Black to Dark Green Gradient */
+            color: #e0e0e0; /* Light gray text for better contrast */
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            color: #ffffff; /* White headings for better visibility */
+            margin: 0;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #004d40, #00695c); /* Dark Green Gradient */
+            color: #fff;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: #e0e0e0;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #1a1a1a, #004d40); /* Black to Dark Green Gradient */
+            text-align: center;
+        }
+
+        .features h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #00e676; /* Bright Green for headings */
+        }
+
+        .feature-cards {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            background: #1a1a1a; /* Dark background for cards */
+            padding: 2rem;
+            border-radius: 10px;
+            width: 300px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            color: #e0e0e0;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .card i {
+            font-size: 2.5rem;
+            color: #00e676; /* Bright Green for icons */
+            margin-bottom: 1rem;
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .card p {
+            font-size: 1rem;
+            color: #bdbdbd; /* Light gray for text */
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #036b55, #0d7005); /* Black to Dark Green Gradient */
+            color: #fff;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        footer .social-links {
+            margin-top: 1rem;
+        }
+
+        footer .social-links a {
+            color: #fff;
+            margin: 0 0.5rem;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        footer .social-links a:hover {
+            color: #00e676; /* Bright Green for hover */
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .features h2 {
+                font-size: 2rem;
+            }
+
+            .card {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <h1>Features of Code Crafter</h1>
+        <p>Explore the powerful features that make Code Crafter the ultimate platform for learning and mastering technical skills.</p>
+    </div>
+
+    <!-- Features Section -->
+    <section class="features">
+        <h2>Our Key Features</h2>
+        <div class="feature-cards">
+            <!-- Feature 1: Comprehensive Courses -->
+            <div class="card">
+                <i class="fas fa-book"></i>
+                <h3>Comprehensive Courses</h3>
+                <p>Access 20+ in-demand courses across domains like Web Development, Data Science, AI, Cybersecurity, and more.</p>
+            </div>
+
+            <!-- Feature 2: Hands-On Projects -->
+            <div class="card">
+                <i class="fas fa-laptop-code"></i>
+                <h3>Hands-On Projects</h3>
+                <p>Work on real-world projects to apply your knowledge and build a strong portfolio.</p>
+            </div>
+
+            <!-- Feature 3: Expert Instructors -->
+            <div class="card">
+                <i class="fas fa-chalkboard-teacher"></i>
+                <h3>Expert Instructors</h3>
+                <p>Learn from industry experts with years of experience in their respective fields.</p>
+            </div>
+
+            <!-- Feature 4: Interactive Learning -->
+            <div class="card">
+                <i class="fas fa-comments"></i>
+                <h3>Interactive Learning</h3>
+                <p>Engage in live sessions, Q&A forums, and peer discussions for a collaborative learning experience.</p>
+            </div>
+
+            <!-- Feature 5: Career Support -->
+            <div class="card">
+                <i class="fas fa-briefcase"></i>
+                <h3>Career Support</h3>
+                <p>Get career guidance, resume reviews, and interview preparation to land your dream job.</p>
+            </div>
+
+            <!-- Feature 6: Flexible Learning -->
+            <div class="card">
+                <i class="fas fa-user-clock"></i>
+                <h3>Flexible Learning</h3>
+                <p>Learn at your own pace with lifetime access to course materials and resources.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2023 Code Crafter. All rights reserved.</p>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+        </div>
+    </footer>
+</body>
+</html>
