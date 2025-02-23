@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>College Admission & Course Selection Chatbot</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    /* General Styles */
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      background: linear-gradient(135deg, #000000, #1a1a1a, #03f3cb); /* Black to Dark Green Gradient */
+      color: #e0e0e0; /* Light gray text for better contrast */
+      line-height: 1.6;
+    }
+
+    h1, h2, h3 {
+      color: #ffffff; /* White headings for better visibility */
+      margin: 0;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* Navbar */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(135deg, #1d241a, #1a5a04); /* Dark Green Gradient */
+      color: #fff;
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    nav .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #cefb05;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    nav ul li a {
+      color: #fff;
+      transition: color 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      color: #00e676; /* Bright Green for hover */
+    }
+
+    /* Hero Section */
+    .hero {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 5rem 2rem;
+      background: linear-gradient(135deg, #1a281e, #00695c); /* Dark Green Gradient */
+      color: #fff;
+    }
+
+    .hero-content {
+      max-width: 50%;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
+
+    .hero .btn {
+      background: #00e676; /* Bright Green */
+      color: #000; /* Black text for contrast */
+      padding: 0.8rem 1.5rem;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    .hero .btn:hover {
+      background: #00c853; /* Darker Green on hover */
+      transform: translateY(-3px);
+    }
+
+    .hero-image img {
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* About Section */
+    .about {
+      padding: 4rem 2rem;
+      text-align: center;
+      background: linear-gradient(135deg, #1a1a1a, #004d40); /* Black to Dark Green Gradient */
+      color: #e0e0e0;
+    }
+
+    .about h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .about p {
+      font-size: 1.1rem;
+      max-width: 800px;
+      margin: 0 auto;
+      color: #e0e0e0;
+    }
+
+    /* Features Section */
+    .features {
+      padding: 4rem 2rem;
+      background: linear-gradient(135deg, #004d40, #00695c); /* Dark Green Gradient */
+      text-align: center;
+    }
+
+    .features h2 {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      color: #fff;
+    }
+
+    .feature-cards {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .card {
+      background: #1a1a1a; /* Dark background for cards */
+      padding: 2rem;
+      border-radius: 10px;
+      width: 300px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      color: #e0e0e0;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    .card i {
+      font-size: 2rem;
+      color: #00e676; /* Bright Green for icons */
+      margin-bottom: 1rem;
+    }
+
+    .card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .card p {
+      font-size: 1rem;
+      color: #bdbdbd; /* Light gray for text */
+    }
+
+    /* Demo Section */
+    .demo {
+      padding: 4rem 2rem;
+      background: linear-gradient(135deg, #1a1a1a, #004d40); /* Black to Dark Green Gradient */
+      text-align: center;
+    }
+
+    .demo h2 {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      color: #fff;
+    }
+
+    .chat-window {
+      background: #1a1a1a; /* Dark background for chat window */
+      border-radius: 10px;
+      padding: 1rem;
+      width: 60%;
+      margin: 0 auto;
+      max-height: 400px;
+      overflow-y: auto;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      color: #e0e0e0;
+    }
+
+    .chat-input {
+      display: flex;
+      margin-top: 1rem;
+    }
+
+    .chat-input input {
+      flex: 1;
+      padding: 0.8rem;
+      border: 1px solid #ccc;
+      border-radius: 5px 0 0 5px;
+      outline: none;
+      background: #333; /* Dark input background */
+      color: #e0e0e0;
+    }
+
+    .chat-input button {
+      background: #00e676; /* Bright Green */
+      color: #000; /* Black text for contrast */
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 0 5px 5px 0;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .chat-input button:hover {
+      background: #00c853; /* Darker Green on hover */
+    }
+
+    /* Resources Section */
+    .resources {
+      padding: 4rem 2rem;
+      background: linear-gradient(135deg, #004d40, #00695c); /* Dark Green Gradient */
+      text-align: center;
+    }
+
+    .resources h2 {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      color: #fff;
+    }
+
+    .resource-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .resource-card {
+      background: #1a1a1a; /* Dark background for cards */
+      padding: 2rem;
+      border-radius: 10px;
+      width: 200px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      color: #e0e0e0;
+    }
+
+    .resource-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    .resource-card i {
+      font-size: 2rem;
+      color: #00e676; /* Bright Green for icons */
+      margin-bottom: 1rem;
+    }
+
+    .resource-card h3 {
+      font-size: 1.2rem;
+      color: #fff;
+    }
+
+    /* Contact Section */
+    .contact {
+      padding: 4rem 2rem;
+      background: linear-gradient(135deg, #1a1a1a, #004d40); /* Black to Dark Green Gradient */
+      text-align: center;
+    }
+
+    .contact h2 {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      color: #fff;
+    }
+
+    .contact form {
+      max-width: 600px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .contact form input,
+    .contact form textarea {
+      padding: 0.8rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      outline: none;
+      background: #333; /* Dark input background */
+      color: #e0e0e0;
+    }
+
+    .contact form button {
+      background: #00e676; /* Bright Green */
+      color: #000; /* Black text for contrast */
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .contact form button:hover {
+      background: #00c853; /* Darker Green on hover */
+    }
+
+    /* Footer */
+    footer {
+      background: linear-gradient(135deg, #036b55, #0d7005); /* Black to Dark Green Gradient */
+      color: #fff;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    footer .social-links {
+      margin-top: 1rem;
+    }
+
+    footer .social-links a {
+      color: #fff;
+      margin: 0 0.5rem;
+      font-size: 1.2rem;
+      transition: color 0.3s ease;
+    }
+
+    footer .social-links a:hover {
+      color: #00e676; /* Bright Green for hover */
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav>
+    <div class="logo">Code Crafter</div>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="features.html">Features</a></li>
+      <li><a href="3demo.html">Demo</a></li>
+      <li><a href="#resources">Resources</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="lab1.html">Other services</a></li>
+      <li><a href="signin.html"><h2 style="color: #9c3535;">Apply Now</h2></a></li>
+
+    </ul>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <h1>Your Personal College Admission & Course Selection Assistant</h1>
+      <p>Get expert guidance on college admissions and course selection with our AI-powered chatbot.</p>
+      <a href="#demo" class="btn">Try Now</a>
+    </div>
+    <div class="hero-image">
+      <img src="https://th.bing.com/th/id/OIP.O2j8k6g1NTAM0t_mIqOBtQHaE7?rs=1&pid=ImgDetMain" alt="Chatbot Illustration">
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="about">
+    <h2>About AdmitBot</h2>
+    <p>
+      Code Crafters is an advanced online learning platform that offers a diverse range of technical courses to help individuals enhance their skills and stay competitive in the tech industry. Whether you are a beginner looking to explore programming or a professional aiming for specialization, Code Crafters provides 20+ in-demand courses across various domains, including Web Development, Data Science, AI, Cybersecurity, Cloud Computing, and Software Development.
+    </p>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features" class="features">
+    <h2>Features</h2>
+    <div class="feature-cards">
+      <div class="card">
+        <i class="fas fa-graduation-cap"></i>
+       <a href="4admnguide.html"> <h3>Admission Guidance</h3></a>
+        <p>Get detailed information on admission requirements and deadlines.</p>
+      </div>
+      <div class="card">
+        <i class="fas fa-book"></i>
+      <a href="2.Course_recomendation.html"> <h3>Course Recommendations</h3></a> 
+        <p>Receive personalized course suggestions based on your interests.</p>
+      </div>
+      <div class="card">
+        <i class="fas fa-question-circle"></i>
+       <a href="faq.html"><h3>FAQs</h3></a>
+        <p>Find answers to common questions about college life and applications.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Demo Section -->
+  <section id="demo" class="demo">
+    <h2>Try the Chatbot</h2>
+    <div class="chat-window">
+      <div id="chat-box"></div>
+      <div class="chat-input">
+        <input type="text" id="user-input" placeholder="Ask me something...">
+        <button id="send-btn"><i class="fas fa-paper-plane"></i></button>
+        <button id="voice-btn" onclick="startVoiceInput()"><i class="fas fa-microphone"></i></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Resources Section -->
+  <section id="resources" class="resources">
+    <h2>Resources</h2>
+    <div class="resource-links">
+      <a href="#" class="resource-card">
+        <i class="fas fa-file-pdf"></i>
+     <h3>Admission Guides</h3>
+      </a>
+      <a href="#" class="resource-card">
+        <i class="fas fa-book-open"></i>
+        <h3>Course Catalogs</h3>
+      </a>
+      <a href="#" class="resource-card">
+        <i class="fas fa-dollar-sign"></i>
+       <a href="schloarship.html"><h3>Scholarship Information</h3></a> 
+      </a>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact">
+    <h2>Contact Us</h2>
+    <form>
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <textarea placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2023 AdmitBot. All rights reserved.</p>
+    <div class="social-links">
+      <a href="#"><i class="fab fa-facebook"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-linkedin"></i></a>
+    </div>
+  </footer>
+
+  
+  <script>
+    // Extended auto-correction dictionary with more incorrect words
+    const correctionMap = {
+      'admissin': 'admission',
+      'colege': 'college',
+      'schlarship': 'scholarship',
+      'cour': 'course',
+      'aplly': 'apply',
+      'howw': 'how',
+      'whatt': 'what',
+      'institue': 'institute',
+      'universsity': 'university',
+      'documnt': 'document',
+      'requre': 'require',
+      'finacial': 'financial',
+      'studnt': 'student',
+      'trancripts': 'transcripts',
+      'recomendation': 'recommendation',
+      'scors': 'scores',
+      'proofs': 'proof'
+    };
+  
+    // Function to auto-correct misspelled words
+    function autoCorrect(input) {
+      const words = input.split(' ');
+      const correctedWords = words.map(word => correctionMap[word.toLowerCase()] || word);
+      return correctedWords.join(' ');
+    }
+  
+    // Speech-to-Text Functionality
+    function startVoiceInput() {
+      const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+      recognition.lang = 'en-US';
+      recognition.interimResults = false;
+      recognition.maxAlternatives = 1;
+  
+      recognition.start();
+  
+      recognition.onresult = (event) => {
+        let transcript = event.results[0][0].transcript;
+        transcript = autoCorrect(transcript); // Auto-correct the transcript
+        document.getElementById('user-input').value = transcript;
+        sendMessage(); // Automatically send the recognized text
+      };
+  
+      recognition.onerror = (event) => {
+        console.error('Speech recognition error:', event.error);
+        alert('Error occurred in speech recognition. Please try again.');
+      };
+  
+      recognition.onspeechend = () => {
+        recognition.stop();
+      };
+    }
+  
+    // Function to send a message
+    function sendMessage() {
+      let userInput = document.getElementById('user-input').value.trim();
+      if (!userInput) return; // Do nothing if the input is empty
+  
+      userInput = autoCorrect(userInput); // Auto-correct the user input
+      const chatBox = document.getElementById('chat-box');
+  
+      // Display user message
+      chatBox.innerHTML += `<p class="user-message"><strong>You:</strong> ${userInput}</p>`;
+  
+      // Generate bot response
+      const botResponse = getBotResponse(userInput);
+      chatBox.innerHTML += `<p class="bot-message"><strong>Bot:</strong> ${botResponse}</p>`;
+  
+      // Speak the bot's response
+      speak(botResponse);
+  
+      // Clear input
+      document.getElementById('user-input').value = '';
+  
+      // Scroll to bottom
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+  
+    // Function to generate bot response based on keywords
+    function getBotResponse(userMessage) {
+      const lowerCaseMessage = userMessage.toLowerCase();
+  
+      // General questions and responses based on keywords
+      const keywordResponses = {
+        "college|university": "I'm here to help! What college-related query do you have?",
+        "apply": "You need to fill out the application form on the official college website or apply through a common application portal.",
+        "scholarship|financial aid": "Many colleges offer financial aid in the form of scholarships, grants, and loans.",
+        "documents": "Typically, you'll need your high school transcripts, recommendation letters, entrance exam scores, and an ID proof.",
+        "gpa|grades": "Each college has its own GPA requirement, typically ranging from 2.5 to 4.0 on a 4.0 scale.",
+        "admission": "Admission deadlines vary by college. Make sure to check the official college website for the exact dates.",
+        "entrance exams": "Some colleges require standardized tests like SAT, ACT, JEE, or NEET.",
+        "international students": "International students need to apply through the college website, submit English proficiency tests like TOEFL/IELTS, and obtain a student visa.",
+        "placement": "Many colleges offer placement programs to help students secure jobs after graduation.",
+        "hostel|dormitory": "Most universities provide hostel or dormitory accommodations for students.",
+        "hello": "Hello! How can I assist you regarding college admissions?",
+        "hi": "Hi there! Do you need help with college applications?",
+        "how are you": "I'm here to help! What college-related query do you have?",
+        "what is your name": "I'm your College Admission Assistant bot!",
+        "what can you do": "I can answer queries related to college admissions, scholarships, courses, and more!",
+        "how to apply for college|apply": "You need to fill out the application form on the official college website or apply through a common application portal.",
+        "what documents are required for admission": "Typically, you'll need your high school transcripts, recommendation letters, entrance exam scores, and an ID proof.",
+        "what is the last date to apply": "Application deadlines vary by college. Please check the respective college website for exact dates.",
+        "do colleges require entrance exams": "Some colleges require standardized tests like SAT, ACT, JEE, or NEET, while others have direct admissions.",
+        "how much are college application fees": "Application fees vary by institution and can range from $20 to $100 or more. Some colleges offer fee waivers.",
+        "is financial aid available": "Yes, many colleges offer financial aid in the form of scholarships, grants, and loans. Check the financial aid section of the college website.",
+        "what are the best courses to study": "It depends on your interest. Popular courses include Engineering, Medicine, Business, Computer Science, and Arts.",
+        "how can international students apply": "International students need to apply through the college website, submit English proficiency tests like TOEFL/IELTS, and obtain a student visa.",
+        "what is the minimum GPA required minimum gpa": "Each college has its own GPA requirement, typically ranging from 2.5 to 4.0 on a 4.0 scale.",
+        "how can I check my admission status": "You can check your admission status by logging into the college portal where you submitted your application.",
+        "do college have placement programs": "this college offer placement programs to help students secure jobs after graduation.",
+        "what are the best colleges for engineering": "Some top engineering colleges include MIT, Stanford, IITs, and Caltech.",
+        "do all colleges have hostels": "Not all, but most universities provide hostel or dormitory accommodations for students.",
+        "how do I get a scholarship": "Scholarships are awarded based on merit, financial need, sports, and other criteria. Check the college scholarship page for details.",
+        "do colleges offer part-time courses": "Yes, many colleges offer part-time or online courses for working professionals and distance learners.",
+        "can I change my major after admission": "Yes, most universities allow you to change your major, but it depends on availability and requirements.",
+        "how to prepare for college entrance exams": "You can prepare by studying past question papers, taking mock tests, and joining coaching classes.",
+        "do colleges accept transfer students": "Yes, many colleges accept transfer students, but they require previous academic records and credits.",
+        "what is the difference between a college and a university": "A college offers undergraduate programs, while a university provides both undergraduate and graduate programs with research facilities.",
+        "what extracurricular activities are available": "Colleges offer various clubs, sports teams, and cultural activities to engage students beyond academics.",
+        "do colleges have internship programs": "Yes, most colleges have tie-ups with companies to provide internships to students.",
+        
+        "what is the best way to write a college essay": "A great college essay should be personal, well-structured, and showcase your achievements and aspirations.",
+        "hello": "Hello! How can I assist you regarding college admissions?",
+  "hi": "Hi there! Do you need help with college applications?",
+  "good morning": "Good morning! How can I help you with your college queries today?",
+  "good afternoon": "Good afternoon! What college-related questions do you have?",
+  "good evening": "Good evening! How can I assist you with college admissions?",
+  "how are you": "I'm here to help! What college-related query do you have?",
+  "what is your name": "I'm your College Admission Assistant bot!",
+  "what can you do": "I can answer queries related to college admissions, scholarships, courses, and more!",
+  "thank you": "You're welcome! Let me know if you have more questions.",
+  "bye": "Goodbye! Best of luck with your college journey!",
+
+  // College Application Process
+  "how to apply for college|apply": "You need to fill out the application form on the official college website or apply through a common application portal.",
+  "what documents are required for admission|document required": "Typically, you'll need your high school transcripts, recommendation letters, entrance exam scores, and an ID proof.",
+  "what is the last date to apply": "Application deadlines vary by college. Please check the respective college website for exact dates.",
+  "do colleges require entrance exams": "Some colleges require standardized tests like SAT, ACT, JEE, or NEET, while others have direct admissions.",
+  "how much are college application fees": "Application fees vary by institution and can range from $20 to $100 or more. Some colleges offer fee waivers.",
+  "how can I check my admission status": "You can check your admission status by logging into the college portal where you submitted your application.",
+  "can I apply to multiple colleges": "Yes, you can apply to multiple colleges, but make sure to check each college's application requirements and deadlines.",
+  "what is early decision": "Early decision is a binding agreement where you commit to attending a college if accepted. You can only apply to one college under early decision.",
+  "what is early action": "Early action is non-binding, allowing you to apply to multiple colleges early and receive decisions sooner.",
+  "what is rolling admission": "Rolling admission means colleges review applications as they are received and make decisions until all spots are filled.",
+  "what is a common application": "The Common App is a platform that allows you to apply to multiple colleges with one application.",
+  "what is a personal statement": "A personal statement is an essay where you explain your background, achievements, and why you want to attend a particular college.",
+  "how important are recommendation letters": "Recommendation letters are crucial as they provide insight into your character, academic abilities, and potential from teachers or mentors.",
+  "can I edit my application after submission": "Some colleges allow minor edits, but it's best to contact the admissions office directly for clarification.",
+  "what is a deferral": "A deferral means your application has been postponed to the regular decision pool for further review.",
+  "what is a waitlist": "A waitlist means you are not initially accepted but may be offered admission if spots become available.",
+  "how to write a college essay": "A great college essay should be personal, well-structured, and showcase your achievements and aspirations.",
+  "what is a supplemental essay": "Supplemental essays are additional essays required by some colleges to understand your fit for their specific programs.",
+  "how to choose a college": "Consider factors like location, programs offered, campus culture, cost, and career opportunities.",
+  "what is a gap year|gap year": "A gap year is a year taken off between high school and college for travel, work, or personal growth.",
+  "can I apply after a gap year": "Yes, many colleges welcome applicants who have taken a gap year.",
+  "what is a college interview": "A college interview is an opportunity for the admissions team to learn more about you beyond your application.",
+  "how to prepare for a college interview": "Research the college, practice common questions, and be ready to discuss your interests and goals.",
+  "what is a college major": "A major is the primary subject or field of study you choose to specialize in during college.",
+  "what is a minor": "A minor is a secondary area of study that complements your major.",
+  "can I double major": "Yes, many colleges allow students to pursue two majors simultaneously.",
+  "what is a liberal arts college": "A liberal arts college focuses on a broad education in humanities, sciences, and arts, rather than specialized training.",
+  "what is a community college": "A community college offers two-year associate degrees and is often more affordable than four-year colleges.",
+  "what is a public university": "A public university is funded by the government and typically offers lower tuition for in-state students.",
+  "what is a private university": "A private university is funded through tuition and donations and often has higher tuition costs.",
+  "what is an Ivy League college": "The Ivy League consists of eight prestigious private universities known for their academic excellence and selectivity.",
+  "what is a state university": "A state university is a public university funded by a state government, offering lower tuition for residents.",
+  "what is a technical college": "A technical college focuses on vocational and technical education, preparing students for specific careers.",
+  "what is an online college": "An online college offers degree programs that can be completed entirely online.",
+  "what is a for-profit college": "A for-profit college is operated by private organizations with the goal of making a profit, often criticized for high costs and low outcomes.",
+  "what is a non-profit college": "A non-profit college reinvests its revenue into the institution, focusing on education rather than profit.",
+  "what is a research university": "A research university emphasizes research and offers extensive graduate programs.",
+  "what is a historically black college": "Historically Black Colleges and Universities (HBCUs) were established to serve African American students.",
+  "what is a women's college": "A women's college is an institution that exclusively admits female students.",
+  "what is a co-ed college": "A co-ed college admits both male and female students.",
+  "what is a trade school": "A trade school focuses on training students for specific trades or vocations, such as plumbing or electrician work.",
+  "what is a certificate program": "A certificate program provides specialized training in a specific field and is shorter than a degree program.",
+  "what is an associate degree": "An associate degree is a two-year degree offered by community colleges and some universities.",
+  "what is a bachelor's degree": "A bachelor's degree is a four-year undergraduate degree.",
+  "what is a master's degree": "A master's degree is a graduate degree that typically takes one to two years to complete after a bachelor's degree.",
+  "what is a doctoral degree": "A doctoral degree is the highest level of academic degree, requiring several years of study and research.",
+  "what is a professional degree": "A professional degree is required for specific careers, such as law (JD) or medicine (MD).",
+  "what is a dual degree program": "A dual degree program allows students to earn two degrees simultaneously, such as a bachelor's and a master's.",
+  "what is a joint degree program": "A joint degree program combines two related fields of study into one degree.",
+  "what is a study abroad program": "A study abroad program allows students to study in a foreign country for a semester or year.",
+  "what is an exchange program": "An exchange program allows students to study at a partner university in another country.",
+  "what is a summer program": "A summer program offers short-term courses or experiences during the summer break.",
+  "what is an honors program": "An honors program offers advanced coursework and opportunities for high-achieving students.",
+  "what is a pre-college program": "A pre-college program is designed for high school students to experience college life and academics.",
+  "what is a bridge program": "A bridge program helps students transition from high school to college or from community college to a four-year university.",
+  "what is a transfer program": "A transfer program allows students to start at a community college and transfer to a four-year university.",
+  "what is a articulation agreement": "An articulation agreement ensures that credits earned at one institution will transfer to another.",
+  "what is a credit hour": "A credit hour represents the amount of time spent in class per week, typically one hour per week for a semester.",
+  "what is a GPA|GPA": "GPA stands for Grade Point Average, a measure of academic performance on a scale of 0 to 4.0.",
+  "what is a weighted GPA": "A weighted GPA gives extra points for honors or advanced courses, often on a scale above 4.0.",
+  "what is an unweighted GPA": "An unweighted GPA is calculated on a standard 4.0 scale without extra points for advanced courses.",
+  "what is a transcript": "A transcript is an official record of a student's academic performance, including courses and grades.",
+  "what is a syllabus": "A syllabus outlines the topics, assignments, and expectations for a course.",
+  "what is a prerequisite": "A prerequisite is a course or requirement that must be completed before taking another course.",
+  "what is a corequisite": "A corequisite is a course that must be taken simultaneously with another course.",
+  "what is an elective": "An elective is a course chosen by the student, often not required for the major.",
+  "what is a capstone project": "A capstone project is a final project or paper that demonstrates a student's knowledge and skills in their major.",
+  "what is a thesis": "A thesis is a research paper required for some graduate degrees.",
+  "what is a dissertation": "A dissertation is an extensive research project required for a doctoral degree.",
+  "what is academic probation": "Academic probation is a warning status for students who fail to meet the college's academic standards.",
+  "what is academic suspension": "Academic suspension is a temporary dismissal from college due to poor academic performance.",
+  "what is academic dismissal": "Academic dismissal is a permanent removal from college due to repeated academic failure.",
+  "what is a dean's list": "The dean's list is an honor roll for students who achieve high academic performance in a semester.",
+  "what is a valedictorian": "A valedictorian is the student with the highest academic rank in a graduating class.",
+  "what is a salutatorian": "A salutatorian is the student with the second-highest academic rank in a graduating class.",
+  "what is a commencement ceremony": "A commencement ceremony is a graduation event where degrees are conferred.",
+  "what is a diploma|diploma": "A diploma is a certificate awarded upon completion of a degree program.",
+  "what is a degree audit": "A degree audit is a review of a student's progress toward meeting graduation requirements.",
+  "what is a registrar": "The registrar is the office responsible for maintaining student records and academic policies.",
+  "what is a bursar": "The bursar is the office responsible for billing and collecting tuition and fees.",
+  "what is financial aid": "Financial aid includes scholarships, grants, loans, and work-study programs to help pay for college.",
+  "what is a scholarship": "A scholarship is financial aid awarded based on merit, need, or other criteria that does not need to be repaid.",
+  "what is a grant": "A grant is financial aid based on need that does not need to be repaid.",
+  "what is a loan": "A loan is borrowed money that must be repaid with interest.",
+  "what is work-study": "Work-study is a program that provides part-time jobs for students with financial need.",
+  "what is FAFSA": "FAFSA (Free Application for Federal Student Aid) is the form used to apply for federal financial aid in the U.S.",
+  "what is CSS profile": "The CSS Profile is an additional financial aid form required by some colleges.",
+  "what is EFC": "EFC (Expected Family Contribution) is the amount a family is expected to contribute toward college costs.",
+  "what is need-blind admission": "Need-blind admission means a college does not consider financial need when making admission decisions.",
+  "what is need-aware admission": "Need-aware admission means a college considers financial need when making admission decisions.",
+  "what is merit-based aid": "Merit-based aid is awarded based on academic, athletic, or artistic achievements.",
+  "what is need-based aid": "Need-based aid is awarded based on a student's financial need.",
+  "what is a full-ride scholarship": "A full-ride scholarship covers all college expenses, including tuition, room, and board.",
+  "what is a tuition waiver": "A tuition waiver reduces or eliminates tuition costs for eligible students.",
+  "what is in-state tuition": "In-state tuition is the lower tuition rate offered to residents of the state where the college is located.",
+  "what is out-of-state tuition": "Out-of-state tuition is the higher tuition rate charged to non-residents.",
+  "what is tuition reimbursement": "Tuition reimbursement is when an employer pays for an employee's education expenses.",
+  "what is a 529 plan": "A 529 plan is a tax-advantaged savings plan for future education costs.",
+  "what is a college savings plan": "A college savings plan is a financial account designed to save for future education expenses.",
+  "what is a prepaid tuition plan": "A prepaid tuition plan allows you to pay for future college tuition at today's rates.",
+  "what is a student loan": "A student loan is money borrowed to pay for college that must be repaid with interest.",
+  "what is a federal student loan": "A federal student loan is issued by the government with lower interest rates and flexible repayment options.",
+  "what is a private student loan": "A private student loan is issued by a bank or lender, often with higher interest rates and fewer repayment options.",
+  "what is loan forgiveness": "Loan forgiveness cancels part or all of a student loan debt under certain conditions.",
+  "what is loan deferment": "Loan deferment allows you to temporarily postpone loan payments.",
+  "what is loan forbearance": "Loan forbearance allows you to temporarily reduce or pause loan payments due to financial hardship.",
+  "what is loan consolidation": "Loan consolidation combines multiple loans into one with a single monthly payment.",
+  "what is a cosigner": "A cosigner is someone who agrees to repay a loan if the borrower fails to do so.",
+  "what is a credit score": "A credit score is a number that represents your creditworthiness, affecting loan eligibility and interest rates.",
+  "what is a credit report": "A credit report is a detailed record of your credit history, used to calculate your credit score.",
+  "what is a default": "Default occurs when a borrower fails to repay a loan as agreed, leading to serious consequences.",
+  "what is a grace period": "A grace period is the time after graduation or leaving school before loan repayment begins.",
+  "what is an income-driven repayment plan": "An income-driven repayment plan adjusts loan payments based on your income.",
+  "what is a fixed interest rate": "A fixed interest rate remains the same throughout the life of the loan.",
+  "what is a variable interest rate": "A variable interest rate can change over time based on market conditions.",
+  "what is APR": "APR (Annual Percentage Rate) is the annual cost of borrowing, including interest and fees.",
+  "what is a subsidized loan": "A subsidized loan is a federal loan where the government pays the interest while you're in school.",
+  "what is an unsubsidized loan": "An unsubsidized loan is a federal loan where interest accrues while you're in school.",
+  "what is a PLUS loan": "A PLUS loan is a federal loan for parents or graduate students to help pay for education expenses.",
+  "what is a Perkins loan": "A Perkins loan is a federal loan for students with exceptional financial need.",
+  "what is a Stafford loan": "A Stafford loan is a federal loan available to undergraduate and graduate students.",
+  "what is a Pell Grant": "A Pell Grant is a federal grant for low-income undergraduate students.",
+  "what is a SEOG Grant": "A SEOG (Supplemental Educational Opportunity Grant) is a federal grant for students with exceptional financial need.",
+  "what is a TEACH Grant": "A TEACH Grant provides funding for students who agree to teach in high-need fields after graduation.",
+  "what is a military grant": "A military grant provides funding for veterans or active-duty service members.",
+  "what is a state grant": "A state grant is financial aid provided by a state government for residents attending in-state colleges.",
+  "what is a private grant": "A private grant is financial aid provided by private organizations or foundations.",
+  "what is a fellowship": "A fellowship is funding for graduate students to support their research or studies.",
+  "what is an assistantship": "An assistantship provides funding for graduate students in exchange for teaching or research work.",
+  "what is a stipend": "A stipend is a fixed sum of money paid to students for their work or research.",
+  "what is a tuition exchange program": "A tuition exchange program allows dependents of employees at participating institutions to attend college at reduced costs.",
+  "what is a tuition payment plan": "A tuition payment plan allows you to pay tuition in installments rather than a lump sum.",
+  "what is a refund": "A refund is money returned to you if your financial aid exceeds your college costs.",
+  "what is a cost of attendance": "The cost of attendance includes tuition, fees, room, board, books, and other expenses.",
+  "what is net price": "Net price is the actual cost of attendance after subtracting scholarships and grants.",
+  "what is a financial aid package|financial aid": "A financial aid package includes all the financial aid offered by a college, such as scholarships, grants, and loans.",
+  "what is a financial aid appeal": "A financial aid appeal is a request for additional aid due to special circumstances.",
+  "what is a special circumstance": "A special circumstance is a change in financial situation that affects your ability to pay for college.",
+  "what is a dependency override": "A dependency override allows independent students to qualify for financial aid without parental information.",
+  "what is a verification process": "The verification process requires students to provide documentation to confirm the accuracy of their financial aid application.",
+  "what is a financial aid award letter": "A financial aid award letter details the financial aid offered by a college.",
+  "what is a financial aid counselor": "A financial aid counselor helps students understand and apply for financial aid.",
+  "what is a financial aid office": "The financial aid office assists students with financial aid applications and questions.",
+  "what is a financial aid deadline": "The financial aid deadline is the last date to submit financial aid applications.",
+      };
+  
+      // Check for matching keyword-based responses
+      for (let keyword in keywordResponses) {
+        const regex = new RegExp(keyword, 'i');
+        if (regex.test(lowerCaseMessage)) {
+          return keywordResponses[keyword];
+        }
+      }
+  
+      // Default response
+      return "I'm here to help! Ask me about college admissions, courses, or scholarships.";
+    }
+  
+    // Function to speak the bot's response
+    function speak(text) {
+      if ('speechSynthesis' in window) {
+        const utterance = new SpeechSynthesisUtterance(text);
+        window.speechSynthesis.speak(utterance);
+      } else {
+        console.warn('Text-to-speech not supported in this browser.');
+      }
+    }
+  
+    // Add event listeners after the DOM is loaded
+    document.addEventListener('DOMContentLoaded', () => {
+      // Send button click event
+      document.getElementById('send-btn').addEventListener('click', sendMessage);
+  
+      // Enter key press event
+      document.getElementById('user-input').addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+          sendMessage();
+        }
+      });
+  
+      // Voice button click event
+      document.getElementById('voice-btn').addEventListener('click', startVoiceInput);
+    });
+  </script>
+</body>
+</html>
