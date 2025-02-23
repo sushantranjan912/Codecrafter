@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up | Code Crafter</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #000000, #1a1a1a, #03f3cb); /* Black to Dark Green Gradient */
+            color: #e0e0e0; /* Light gray text for better contrast */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Sign Up Container */
+        .signup-container {
+            background: #1a1a1a; /* Dark background for the form */
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 400px;
+        }
+
+        .signup-container h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #00e676; /* Bright Green for headings */
+        }
+
+        /* Input Groups */
+        .input-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        .input-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #e0e0e0; /* Light gray for labels */
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #333; /* Dark border for inputs */
+            border-radius: 5px;
+            background: #333; /* Dark input background */
+            color: #e0e0e0; /* Light gray text for inputs */
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .input-group input:focus {
+            border-color: #00e676; /* Bright Green border on focus */
+        }
+
+        /* Button */
+        .btn {
+            width: 100%;
+            padding: 0.8rem;
+            background: #00e676; /* Bright Green */
+            color: #000; /* Black text for contrast */
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #00c853; /* Darker Green on hover */
+            transform: translateY(-3px);
+        }
+
+        /* Link */
+        .signup-container p {
+            margin-top: 1.5rem;
+            color: #e0e0e0; /* Light gray for text */
+        }
+
+        .signup-container p a {
+            color: #00e676; /* Bright Green for links */
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .signup-container p a:hover {
+            color: #00c853; /* Darker Green on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-container">
+        <h2>Sign Up</h2>
+        <form action="#" method="POST">
+            <div class="input-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="input-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="input-group">
+                <label for="confirm-password">Confirm Password</label>
+                <input type="password" id="confirm-password" name="confirm-password" required>
+            </div>
+            <button type="submit" class="btn">Sign Up</button>
+        </form>
+        <p>Already have an account? <a href="login.html">Login</a></p>
+    </div>
+</body>
+</html>
