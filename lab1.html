@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Code Crafter Lab</title>
+  <style>
+    /* General Styles */
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #02325c, #055a5e);
+      margin: 0;
+      padding: 0;
+      /* background-color: #f4f4f4; */
+      color: #333;
+    }
+
+    header {
+      /* background: linear-gradient(135deg, #007BFF, #00BFFF); */ background: linear-gradient(to right, #02325c, #055a5e);
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      margin: 0;
+    }
+
+    p {
+      margin: 5px 0;
+    }
+
+    /* Slideshow Styles */
+    .slideshow-container {
+      position: relative;
+      max-width: 800px;
+      margin: 20px auto;
+    }
+
+    .mySlides {
+      display: none;
+    }
+
+    .mySlides img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .prev, .next {
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      width: auto;
+      padding: 16px;
+      margin-top: -22px;
+      color: white;
+      font-weight: bold;
+      font-size: 18px;
+      transition: 0.6s ease;
+      border-radius: 0 3px 3px 0;
+      user-select: none;
+    }
+
+    .next {
+      right: 0;
+      border-radius: 3px 0 0 3px;
+    }
+
+    .prev:hover, .next:hover {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    /* Accessories Section */
+    .accessories {
+      padding: 20px;
+      text-align: center;
+      background: linear-gradient(135deg, #f4f4f4, #e0e0e0);
+    }
+
+    .accessory-list {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+
+    .accessory-item {
+      background-color: white;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 15px;
+      margin: 10px;
+      width: 30%;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .accessory-item:hover {
+      transform: scale(1.05);
+    }
+
+    .accessory-item img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .accessory-item h3 {
+      margin: 10px 0 5px;
+    }
+
+    .accessory-item p {
+      margin: 0;
+    }
+
+    /* Footer Styles */
+    footer {
+      background: linear-gradient(135deg, #333, #000);
+      color: white;
+      text-align: center;
+      padding: 10px;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Code Crafter Lab</h1>
+    <p>Explore our premium lab accessories designed for innovation and efficiency.</p>
+  </header>
+
+  <section class="slideshow-container">
+    <!-- Slideshow Images -->
+    <div class="mySlides fade">
+      <img src="https://cryostarindustries.com/wp-content/uploads/2020/08/group-of-laboratory-glassware.jpg" alt="Lab Accessory 1">
+    </div>
+    <div class="mySlides fade">
+      <img src="https://img-new.cgtrader.com/items/2207418/8ec1ec367c/lab-glassware-set-3d-model-max-obj-fbx.jpg" alt="Lab Accessory 2">
+    </div>
+    <div class="mySlides fade">
+      <img src="https://img.freepik.com/free-photo/concept-science-research-laboratory-accessories-isolated-white-background_185193-93029.jpg?w=996&t=st=1665542298~exp=1665542898~hmac=eb9bb84d92813be3020ea9fe120a30d86eef9f4fb6df69f0d6e2fdc5295d99d6" alt="Lab Accessory 3">
+    </div>
+
+    <!-- Navigation Buttons -->
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+  </section>
+
+  <section class="accessories">
+    <h2>Featured Lab Accessories</h2>
+    <div class="accessory-list">
+      <div class="accessory-item">
+        <img src="https://static.wixstatic.com/media/93542a_91888a8c80784e51b8c11fb3376ff707~mv2.jpg/v1/fill/w_1000,h_792,al_c,q_85,usm_0.66_1.00_0.01/93542a_91888a8c80784e51b8c11fb3376ff707~mv2.jpg" alt="Microscope">
+        <h3>High-Precision Microscope</h3>
+        <p>Perfect for detailed analysis and research.</p>
+      </div>
+      <div class="accessory-item">
+        <img src="https://www.american-scientific.com/wp-content/uploads/2019/03/8821-00-1-scaled.jpg" alt="Lab Tools">
+        <h3>Lab Tool Kit</h3>
+        <p>Essential tools for every lab enthusiast.</p>
+      </div>
+      <div class="accessory-item">
+        <img src="https://shop.unigreenscheme.co.uk/files/ITEM-13602-001.jpg" alt="Glassware">
+        <h3>Premium Glassware Set</h3>
+        <p>Durable and reliable for all experiments.</p>
+      </div>
+      <div class="accessory-item">
+        <img src="https://i5.walmartimages.com/asr/3994a03f-d775-4e6b-9bf7-067a04492665_1.ff68ba47e66eb088e40189857cd88acb.jpeg" alt="Bunsen Burner">
+        <h3>Bunsen Burner</h3>
+        <p>High-quality burner for precise heating.</p>
+      </div>
+      <div class="accessory-item">
+        <img src="https://th.bing.com/th/id/OIP.PuLsekQxy9TinQP0d6bSqgHaH_?rs=1&pid=ImgDetMain" alt="Centrifuge">
+        <h3>Centrifuge Machine</h3>
+        <p>Efficient separation of liquids and solids.</p>
+      </div>
+      <div class="accessory-item">
+        <img src="https://www.scientistlive.com/sites/scientistlive/files/styles/article/public/porvairpr380-image.jpg?itok=8Cts6OdW" alt="Microplate">
+        <h3>Microplate Reader</h3>
+        <p>Advanced analysis for lab samples.</p>
+      </div>
+      <div class="accessory-item">
+        <img src="https://media.sciencephoto.com/image/c0357448/800wm/C0357448-Pipettes_in_laboratory.jpg" alt="Pipette">
+        <h3>Electronic Pipette</h3>
+        <p>Accurate liquid handling for experiments.</p>
+      </div>
+      <div class="accessory-item">
+        <img src="https://laboratoryinfo.com/wp-content/uploads/2019/12/image-above-shows-the-typical-or-basic-structure-of-a-spectrophotometer.jpg" alt="Spectrophotometer">
+        <h3>Spectrophotometer</h3>
+        <p>Measure light intensity with precision.</p>
+      </div>
+      <div class="accessory-item">
+        <img src="https://th.bing.com/th/id/OIP.9yIFb79t6R0GsN6OPhTnSwHaHa?rs=1&pid=ImgDetMain" alt="Incubator">
+        <h3>Lab Incubator</h3>
+        <p>Ideal for cell culture and microbiology.</p>
+      </div>
+      <div class="accessory-item">
+        <img src="https://th.bing.com/th/id/R.c344cfd256df1798fdba207148141ab8?rik=YNe4A89vDz8x7w&riu=http%3a%2f%2fwww.isterilizer.com%2fcontent%2fimages%2fthumbs%2f0002196_ezclave-n10e-full-automatic-laboratory-autoclave-sterilizer-lab_550.png&ehk=gHsl6bO1%2fj8vczhQbIUEIwK%2f3%2bEBqa7maAFPYNkRbFg%3d&risl=&pid=ImgRaw&r=0" alt="Autoclave">
+        <h3>Autoclave Sterilizer</h3>
+        <p>Sterilize lab equipment efficiently.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2023 Code Crafter Lab. All rights reserved.</p>
+  </footer>
+
+  <script>
+    let slideIndex = 0; // Start from the first slide
+    showSlides();
+
+    function showSlides() {
+        let i;
+        let slides = document.getElementsByClassName("mySlides");
+        
+        // Hide all slides
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+
+        // Move to the next slide
+        slideIndex++;
+        if (slideIndex > slides.length) { slideIndex = 1; } 
+        
+        slides[slideIndex - 1].style.display = "block";
+
+        // Change slide every 1 second
+        setTimeout(showSlides, 1000);
+    }
+</script>
+
+</body>
+</html>
