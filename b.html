@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scholarship Information | Code Crafter</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #000000, #1a1a1a, #004d40); /* Adjusted Gradient */
+            color: #e0e0e0; /* Light gray text for better contrast */
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            color: #ffffff; /* White headings for better visibility */
+            margin: 0;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #004d40, #00695c); /* Dark Green Gradient */
+            color: #fff;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: #e0e0e0;
+        }
+
+        /* Scholarship Section */
+        .scholarship {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #1a1a1a, #004d40); /* Black to Dark Green Gradient */
+            text-align: center;
+        }
+
+        .scholarship h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #00e676; /* Bright Green for headings */
+        }
+
+        .scholarship-cards {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            background: #1a1a1a; /* Dark background for cards */
+            padding: 2rem;
+            border-radius: 10px;
+            width: 300px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            color: #e0e0e0;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .card i {
+            font-size: 2.5rem;
+            color: #00e676; /* Bright Green for icons */
+            margin-bottom: 1rem;
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .card p {
+            font-size: 1rem;
+            color: #bdbdbd; /* Light gray for text */
+        }
+
+        .card ul {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+        }
+
+        .card ul li {
+            margin: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .card ul li::before {
+            content: "•";
+            color: #00e676; /* Bright Green for bullet points */
+            position: absolute;
+            left: 0;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #036b55, #0d7005); /* Black to Dark Green Gradient */
+            color: #fff;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        footer .social-links {
+            margin-top: 1rem;
+        }
+
+        footer .social-links a {
+            color: #fff;
+            margin: 0 0.5rem;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        footer .social-links a:hover {
+            color: #00e676; /* Bright Green for hover */
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .scholarship h2 {
+                font-size: 2rem;
+            }
+
+            .card {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header" id="header">
+        <h1 id="header-text">Scholarship Information</h1>
+        <p id="header-subtext">Explore the scholarships available on Code Crafter to support your learning journey.</p>
+    </div>
+
+    <!-- Scholarship Section -->
+    <section class="scholarship">
+        <h2>Available Scholarships</h2>
+        <div class="scholarship-cards">
+            <!-- Scholarship 1: Merit-Based Scholarship -->
+            <div class="card">
+                <i class="fas fa-award"></i>
+                <h3>Merit-Based Scholarship</h3>
+                <p>This scholarship is awarded to students who demonstrate exceptional academic performance.</p>
+                <ul>
+                    <li>Eligibility: Minimum GPA of 3.5</li>
+                    <li>Coverage: Up to 50% of course fees</li>
+                    <li>Deadline: December 31, 2023</li>
+                </ul>
+            </div>
+
+            <!-- Scholarship 2: Need-Based Scholarship -->
+            <div class="card">
+                <i class="fas fa-hand-holding-heart"></i>
+                <h3>Need-Based Scholarship</h3>
+                <p>This scholarship is designed for students who require financial assistance to pursue their education.</p>
+                <ul>
+                    <li>Eligibility: Proof of financial need</li>
+                    <li>Coverage: Up to 75% of course fees</li>
+                    <li>Deadline: January 15, 2024</li>
+                </ul>
+            </div>
+
+            <!-- Scholarship 3: Women in Tech Scholarship -->
+            <div class="card">
+                <i class="fas fa-female"></i>
+                <h3>Women in Tech Scholarship</h3>
+                <p>This scholarship encourages women to pursue careers in technology and STEM fields.</p>
+                <ul>
+                    <li>Eligibility: Female students enrolled in tech courses</li>
+                    <li>Coverage: Up to 100% of course fees</li>
+                    <li>Deadline: February 1, 2024</li>
+                </ul>
+            </div>
+
+            <!-- Scholarship 4: Diversity Scholarship -->
+            <div class="card">
+                <i class="fas fa-users"></i>
+                <h3>Diversity Scholarship</h3>
+                <p>This scholarship promotes diversity and inclusion in the tech industry.</p>
+                <ul>
+                    <li>Eligibility: Underrepresented groups in tech</li>
+                    <li>Coverage: Up to 50% of course fees</li>
+                    <li>Deadline: March 1, 2024</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2023 Code Crafter. All rights reserved.</p>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+        </div>
+    </footer>
+    <script>
+        function getRandomColor() {
+            const letters = "0123456789ABCDEF";
+            let color = "#";
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        function changeTextColor() {
+            const headerText = document.querySelector("#header-text");
+            const headerSubtext = document.querySelector("#header-subtext");
+            if (headerText && headerSubtext) {
+                headerText.style.color = getRandomColor();
+                headerSubtext.style.color = getRandomColor();
+            }
+        }
+
+        setInterval(changeTextColor, 800);
+    </script>
+</body>
+</html>
