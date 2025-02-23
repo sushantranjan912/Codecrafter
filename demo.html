@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>University Slideshow</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    /* General Styles */
+    body {
+      /* font-family: 'Poppins', sans-serif; */
+      font-family: 'Roboto Mono', monospace;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to right, #02325c, #055a5e);
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .slideshow-container {
+      width: 75%;
+      height: 75vh;
+      position: relative;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .slide {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .slide.active {
+      opacity: 1;
+    }
+
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .slide-content {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      right: 20px;
+      background: rgba(0, 0, 0, 0.7);
+      color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    .slide-content h2 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    .slide-content p {
+      font-size: 1rem;
+      margin: 0;
+    }
+
+    .controls {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 20px;
+    }
+
+    .controls button {
+      background: rgba(255, 255, 255, 0.8);
+      border: none;
+      color: #333;
+      font-size: 1.5rem;
+      padding: 10px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .controls button:hover {
+      background: rgba(255, 255, 255, 1);
+    }
+
+    .indicators {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 10px;
+    }
+
+    .indicators span {
+      width: 10px;
+      height: 10px;
+      background: rgba(255, 255, 255, 0.5);
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .indicators span.active {
+      background: rgba(255, 255, 255, 1);
+    }
+    /* Chatbot Styles */
+    #chatbot {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 300px;
+            background-color: #1a1a1a;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            display: none;
+        }
+
+        #chatbot-header {
+            background-color: #ff6200;
+            padding: 10px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        #chatbot-body {
+            padding: 10px;
+            height: 200px;
+            overflow-y: auto;
+        }
+
+        #chatbot-input {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-top: 1px solid #ccc;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+
+        #chatbot-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #ff6200;
+            color: #fff;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+  </style>
+</head>
+<body>
+  <div class="slideshow-container">
+    <!-- Slides -->
+    <div class="slide active">
+      <img src="https://courses.msqfon.com/wp-content/uploads/2021/03/program-bachelor-of-science-in-computer-science-1920x1080-1.jpg" alt="Course 1">
+      <div class="slide-content">
+        <h2>Computer Science</h2>
+        <p>Top-ranked program with cutting-edge research and industry partnerships.</p>
+      </div>
+    </div>
+    <div class="slide">
+      <img src="https://i.ytimg.com/vi/yh2pLdDb87c/maxresdefault.jpg" alt="Course 2">
+      <div class="slide-content">
+        <h2>Data science</h2>
+        <p>Learn the latest technology in data science with expert instructors </p>
+      </div>
+    </div>
+    <div class="slide">
+      <img src="https://th.bing.com/th/id/OIP.135lGKjg5ko-qRLaBDhImgHaEK?rs=1&pid=ImgDetMain" alt="Course 3">
+      <div class="slide-content">
+        <h2>Machine learning </h2>
+        <p>Learn the latest technology in Machine learning with expert instructors .</p>
+      </div>
+    </div>
+    <div class="slide">
+      <img src="https://www.cm-alliance.com/hubfs/60776739_l%20(1).jpg#keepProtocol" alt="Course 4">
+      <div class="slide-content">
+        <h2>Cyber Security</h2>
+        <p>Learn the latest technology in Machine learning with expert instructors.</p>
+      </div>
+    </div>
+    <div class="slide">
+      <img src="https://suretyit.com.au/wp-content/uploads/2022/11/cloud-computing.jpg" alt="Course 5">
+      <div class="slide-content">
+        <h2>Cloud Computing</h2>
+        <p>Renowned law program with a strong emphasis on justice and ethics.</p>
+      </div>
+    </div>
+    <!-- Add more slides as needed -->
+    <div class="slide">
+      <img src="https://www.edvisehub.com/wp-content/uploads/2022/02/Top-10-Universities-in-the-world.png" alt="Achievement 1">
+      <div class="slide-content">
+        <h2>Ranked Top 10 Globally</h2>
+        <p>Our university is consistently ranked among the top 10 universities worldwide.</p>
+      </div>
+    </div>
+    <div class="slide">
+      <img src="https://th.bing.com/th/id/OIP.Q6Dt5IyI3mNOZXFGvyXISAHaGG?rs=1&pid=ImgDetMain" alt="Achievement 2">
+      <div class="slide-content">
+        <h2>100% Placement Rate</h2>
+        <p>Our graduates enjoy a 100% placement rate in top companies and organizations.</p>
+      </div>
+    </div>
+    <div class="slide">
+      <img src="https://delawaregoestocollege.org/wp-content/uploads/2021/12/Cutting-edge-technology-in-research.jpg" alt="Achievement 3">
+      <div class="slide-content">
+        <h2>Cutting-Edge Research</h2>
+        <p>Our research initiatives are at the forefront of innovation and discovery.</p>
+      </div>
+    </div>
+    <!-- Add more slides as needed -->
+
+    <!-- Controls -->
+    <div class="controls">
+      <button onclick="prevSlide()"><i class="fas fa-chevron-left"></i></button>
+      <button onclick="nextSlide()"><i class="fas fa-chevron-right"></i></button>
+    </div>
+
+    <!-- Indicators -->
+    <div class="indicators">
+      <span class="active"></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+     <!-- Chatbot -->
+     <div id="chatbot">
+        <div id="chatbot-header">AI Chatbot</div>
+        <div id="chatbot-body"></div>
+        <input type="text" id="chatbot-input" placeholder="Ask me anything...">
+        <button id="mic-button">🎤</button>
+    </div>
+    <div id="chatbot-toggle">💬</div>
+
+  </div>
+  <script>
+   document.addEventListener("DOMContentLoaded", () => {
+    // Slideshow functionality
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const indicators = document.querySelectorAll('.indicators span');
+
+    function showSlide(index) {
+        slides.forEach((slide, i) => {
+            slide.classList.toggle('active', i === index);
+            indicators[i].classList.toggle('active', i === index);
+        });
+    }
+
+    function nextSlide() {
+        currentSlide = (currentSlide + 1) % slides.length;
+        showSlide(currentSlide);
+    }
+
+    function prevSlide() {
+        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+        showSlide(currentSlide);
+    }
+
+    setInterval(nextSlide, 2000); // Auto-advance slides every 5 seconds
+
+    indicators.forEach((indicator, index) => {
+        indicator.addEventListener('click', () => {
+            currentSlide = index;
+            showSlide(currentSlide);
+        });
+    });
+
+    // Chatbot functionality
+    const chatbot = document.getElementById('chatbot');
+    const chatbotToggle = document.getElementById('chatbot-toggle');
+    const chatbotBody = document.getElementById('chatbot-body');
+    const chatbotInput = document.getElementById('chatbot-input');
+    const micButton = document.getElementById('mic-button');
+
+    let firstMessage = true;
+    let recognition;
+
+    // Initialize speech recognition if supported
+    if ('webkitSpeechRecognition' in window) {
+        recognition = new webkitSpeechRecognition();
+        recognition.continuous = false;
+        recognition.interimResults = false;
+        recognition.lang = 'en-US';
+
+        recognition.onresult = (event) => {
+            const transcript = event.results[0][0].transcript;
+            chatbotInput.value = transcript;
+            sendMessage(transcript);
+        };
+
+        recognition.onerror = (event) => console.error('Speech recognition error:', event.error);
+        recognition.onend = () => console.log('Speech recognition ended.');
+    } else {
+        console.warn('Speech recognition not supported.');
+        micButton.disabled = true;
+    }
+
+    // Toggle chatbot visibility
+    chatbotToggle.addEventListener('click', () => {
+        chatbot.style.display = chatbot.style.display === 'none' ? 'block' : 'none';
+        if (firstMessage) {
+            setTimeout(() => {
+                chatbotBody.innerHTML += `<div><strong>Bot:</strong> Hello! How can I assist you?</div>`;
+            }, 500);
+            firstMessage = false;
+        }
+    });
+
+    // Send message on Enter key press
+    chatbotInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            const userMessage = chatbotInput.value.trim();
+            if (userMessage) sendMessage(userMessage);
+        }
+    });
+
+    // Start speech recognition on mic button click
+    micButton.addEventListener('click', () => {
+        if (recognition) {
+            recognition.start();
+            console.log('Listening...');
+        }
+    });
+
+    // Send user message and get bot response
+    function sendMessage(userMessage) {
+        chatbotBody.innerHTML += `<div><strong>You:</strong> ${userMessage}</div>`;
+        chatbotInput.value = '';
+
+        setTimeout(() => {
+            const botResponse = getBotResponse(userMessage);
+            chatbotBody.innerHTML += `<div><strong>Bot:</strong> ${botResponse}</div>`;
+            chatbotBody.scrollTop = chatbotBody.scrollHeight;
+            speak(botResponse); // Speak the bot's response
+        }, 500);
+    }
+
+    // Generate bot response based on user input
+    function getBotResponse(userMessage) {
+        const lowerCaseMessage = userMessage.toLowerCase();
+
+        // Product information
+        const products = {
+            "pen": { description: "Gel pens, fountain pens, and ballpoint pens.", price: "Rs 50 - Rs 500" },
+            "notebook": { description: "Spiral notebooks and leather journals.", price: "Rs 100 - Rs 800" },
+            "art": { description: "Watercolor sets, sketch pads, and brushes.", price: "Rs 150 - Rs 1000" },
+            "office": { description: "Staplers, sticky notes, and binders.", price: "Rs 50 - Rs 300" },
+            "marker": { description: "Permanent markers, whiteboard markers, and highlighters.", price: "Rs 50 - Rs 200" },
+            "pencil": { description: "Mechanical, wooden, and colored pencils.", price: "Rs 20 - Rs 200" },
+            "eraser": { description: "Rubber erasers and kneaded erasers.", price: "Rs 10 - Rs 100" },
+            "ruler": { description: "Plastic, metal, and flexible rulers.", price: "Rs 20 - Rs 100" }
+        };
+
+        // FAQ responses
+        const faqs = {
+            "courses": "We offer courses in Computer Science, Data Science, Machine Learning, Cyber Security, and Cloud Computing.",
+            "admission": "Admissions are open! Visit our website for more details.",
+            "contact": "You can contact us at info@university.com or call +1-123-456-7890.",
+            "scholarship": "We offer scholarships based on merit and need. Apply online!"
+        };
+
+        // Check for product-related queries
+        for (let key in products) {
+            if (lowerCaseMessage.includes(key)) {
+                return `We offer ${products[key].description}. Price: ${products[key].price}`;
+            }
+        }
+
+        // Check for FAQ-related queries
+        for (let key in faqs) {
+            if (lowerCaseMessage.includes(key)) {
+                return faqs[key];
+            }
+        }
+
+        // Default response
+        return "I'm sorry, I didn't understand. Can you rephrase your question?";
+    }
+
+    // Speak the bot's response
+    function speak(text) {
+        if ('speechSynthesis' in window) {
+            const utterance = new SpeechSynthesisUtterance(text);
+            window.speechSynthesis.speak(utterance);
+        } else {
+            console.warn('Text-to-speech not supported.');
+        }
+    }
+});
+</script>
+
+
+
+</body>
+</html>
